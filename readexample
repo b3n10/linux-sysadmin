@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo -n "Enter name: "
+read name
+
+if [ -n "$name" ]; then
+	echo "Hi $name"
+	exit 0
+else
+	echo "no name"
+	exit 1
+fi

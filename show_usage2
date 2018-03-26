@@ -1,0 +1,16 @@
+#!/bin/bash
+
+args_count=$#
+arg1=$1
+
+function show_usage {
+	echo "Usage: $0 source_dir dest_dir"
+	if [ $args_count -eq 0 ]; then
+		exit 99 # Exit with arbitrary nonzero return code
+	else
+		exit $arg1
+	fi
+}
+
+show_usage
+# must read https://unix.stackexchange.com/a/83314/273640
