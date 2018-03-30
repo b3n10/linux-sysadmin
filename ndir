@@ -1,0 +1,26 @@
+#!/bin/bash
+# script only applicable for directory with subdirectory ending with numerical value
+
+# ndir: new dir
+function ndir {
+	# last folder numerically ordered
+	str=`ls -d */ -1 | tail -n 1`;
+	# get str length
+	str_len=${#str};
+	str1=$((str_len-3));
+
+	# slice to get substring starting from beginning with 3 chars ($str1)
+	prefix=${str::str1};
+	# slice to get 2 chars starting from $str1 (3rd char from end)
+	suffix=${str:str1:2};
+
+	# increment suffix
+	new_suffix=$(echo $suffix + 1 | bc);
+
+	# new directory
+	new_dir=$prefix$new_suffix;
+
+	mkdir "$new_dir" && echo "created: $new_dir" && cd "$new_dir" || echo "Command failure.";
+}
+
+# append script to bashrc
