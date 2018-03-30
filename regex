@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# search "lib" and/or "libs" in any file of src directory
+grep -E "\blib\b|libs" ~/workspace/websites/website-01/src/*
