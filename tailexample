@@ -1,0 +1,10 @@
+#!/bin/bash
+
+while true
+do
+	date +%T >> /tmp/hello
+	sleep 1
+done
+
+# touch /tmp/hello
+# tail -f /tmp/hello
