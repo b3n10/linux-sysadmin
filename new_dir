@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# script only applicable for directory with subdirectory ending with numerical value
+
+str=`ls -1 | tail -n 1`; # get last file/folder alphabetically
+cstr=${#str}; # get str length
+ccstr=$((cstr-2));
+
+prefix=${str::ccstr}; # get filename without number (prefix)
+suffix=${str:ccstr:ccstr}; # get last 2 chars (suffix)
+new_suffix=`echo "$suffix + 1" | bc -l`;
+
+#new directory
+new_dir=$prefix$new_suffix;
+
+echo mkdir "$new_dir" | bash -x;

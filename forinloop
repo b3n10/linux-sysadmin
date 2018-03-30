@@ -1,0 +1,9 @@
+#!/bin/bash
+
+suffix=BACKUP--`date +%Y%m%d-%H:%M`
+
+for script in *.sh; do
+	new_name="$script.$suffix";
+	echo "Copying $script to $new_name";
+	cp $script $new_name
+done
