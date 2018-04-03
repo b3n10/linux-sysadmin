@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# run script by issuing:
+# bash chmod_dir _3d_printing _abutment _Archiv CARES database _disc machinesoftware software _standard_millings
+# or
+# chmod u+x chmod_dir
+# then
+# ./chmod_dir _3d_printing _abutment _Archiv CARES database _disc machinesoftware software _standard_millings
+# NOTE: no need to add nc as parameter because it will be the parent directory
+
+parentDir=/etkon/smb-shares;
+
+# check if nc exist
+if [[ -d $parentDir/nc ]]; then
+	echo "Write stickybit to nc";
+	parentDir=$parentDir/nc;
+	chmod +t $parentDir;
+	chown -R root:root $parentDir;
+	# start loop on other parameters
+	for dir in $*; do
+		if [[ $dir == "_3d_printing" ]] && [[ -d "$parentDir/$dir" ]]; then
+			echo "Write permissions to $dir";
+			chmod -R 755 $parentDir/$dir;
+			chmod 1777 $parentDir/$dir/model/pool_01/todo;
+		elif [[ $dir == "_abutment" ]] && [[ -d "$parentDir/$dir" ]]; then
+			echo "Write permissions to $dir";
+			chmod -R 755 $parentDir/$dir;
+			chmod 1777 $parentDir/$dir/chiron/pool_01/todo;
+			chmod 1777 $parentDir/$dir/chiron/pool_01/handlers;
+			chmod 1777 $parentDir/$dir/chiron-turnmilling/pool_01/todo;
+		elif [[ $dir == "_disc" ]] && [[ -d "$parentDir/$dir" ]]; then
+			echo "Write permissions to $dir";
+			chmod 1777 $parentDir/$dir/kern/archive;
+			chmod 1777 $parentDir/$dir/kern/pool_01/pallet;
+			chmod 1777 $parentDir/$dir/kern/pool_01/todo;
+		elif [[ $dir == "_standard_millings" ]] && [[ -d "$parentDir/$dir" ]]; then
+			echo "Write permissions to $dir";
+			chmod -R 755 $parentDir/$dir;
+			chmod 1777 $parentDir/$dir/wissner/archive;
+			chmod 1777 $parentDir/$dir/wissner/pool_01/config;
+			chmod 1777 $parentDir/$dir/wissner/pool_01/status;
+			chmod 1777 $parentDir/$dir/wissner/pool_01/todo;
+		elif [[ $dir == "_Archiv" ]] || [[ $dir == "software" ]] || [[ $dir == "database" ]] || [[ $dir == "machinesoftware" ]] || [[ $dir == "CARES" ]] && [[ -d "$parentDir/$dir" ]]; then
+			echo "Write permissions to $dir";
+			chmod -R 1777 $parentDir/$dir;
+		fi
+	done
+fi

@@ -1,0 +1,19 @@
+#!/bin/bash
+# for lavanya
+
+mkdir -p etkon/smb-shares/nc/_3d_printing/model/pool_01/todo
+mkdir -p etkon/smb-shares/nc/_abutment/chiron/pool_01/todo
+mkdir -p etkon/smb-shares/nc/_abutment/chiron/pool_01/handlers
+mkdir -p etkon/smb-shares/nc/_abutment/chiron-turnmilling/pool_01/todo
+mkdir -p etkon/smb-shares/nc/_disc/kern/archive
+mkdir -p etkon/smb-shares/nc/_disc/kern/pool_01/pallet
+mkdir -p etkon/smb-shares/nc/_disc/kern/pool_01/todo
+mkdir -p etkon/smb-shares/nc/_standard_millings/wissner/archive
+mkdir -p etkon/smb-shares/nc/_standard_millings/wissner/pool_01/config
+mkdir -p etkon/smb-shares/nc/_standard_millings/wissner/pool_01/status
+mkdir -p etkon/smb-shares/nc/_standard_millings/wissner/pool_01/todo
+mkdir -p etkon/smb-shares/nc/_Archiv
+mkdir -p etkon/smb-shares/nc/software
+mkdir -p etkon/smb-shares/nc/database
+mkdir -p etkon/smb-shares/nc/machinesoftware
+mkdir -p etkon/smb-shares/nc/CARES
