@@ -40,9 +40,12 @@ if [[ -d $parentDir/nc ]]; then
 			chmod 1777 $parentDir/$dir/wissner/pool_01/config;
 			chmod 1777 $parentDir/$dir/wissner/pool_01/status;
 			chmod 1777 $parentDir/$dir/wissner/pool_01/todo;
-		elif [[ $dir == "_Archiv" ]] || [[ $dir == "software" ]] || [[ $dir == "database" ]] || [[ $dir == "machinesoftware" ]] || [[ $dir == "CARES" ]] && [[ -d "$parentDir/$dir" ]]; then
-			echo "Write permissions to $dir";
-			chmod -R 1777 $parentDir/$dir;
+		else
+			# other directories under nc that only needs 1777 permission
+			if [[ -d "$parentDir/$dir" ]]; then
+				echo "Write permissions to $dir";
+				chmod -R 1777 $parentDir/$dir;
+			fi
 		fi
 	done
 fi
