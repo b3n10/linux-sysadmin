@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
+
+if [[ -d $DIR/examples ]]; then
+	echo "rm -r $DIR/examples" | bash -x;
+else
+	rm -r $DIR/examples;
+fi
