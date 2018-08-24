@@ -20,7 +20,7 @@ print "Another set of toys are ", join(" ", @another_toys), ".\n";
 # functions (print, join, etc.) don't need parenthesis but can be added to avoid ambiguity
 # accessing element from array
 print "I like to eat ${another_toys[1]}\n";
+printf "\@toys length: " . ($#toys + 1) . "\n";
 
 # hash (aka associative array) starts with %
 
-printf "\@toys length: " . ($#toys + 1) . "\n";

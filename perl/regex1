@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+print "Enter name: ";
+$text = <>;
+
+# regex operation defaults to "matching"
+# the following expression can be written as m/francis+ben/
+if ($text =~ /francis+ben/) {
+	printf "Hi " . $text;
+}

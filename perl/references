@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+while (<>) {
+	# [] will create "reference" to an array and stores it to $array_ref
+	# this is not an array but only a pointer/reference
+	$array_ref = [ split(/:/) ];
+	# $array_ref->[2] means get 3rd index on the $array_ref and will be used as key in hash %passwd_by_uid
+	$passwd_by_uid{$array_ref->[2]} = $array_ref;
+	print $array_ref;
+}

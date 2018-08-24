@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+
+print "Enter your fullname: ";
+$names = <>;
+# use single quotation for regex
+$regex = '(\w+)\s(\w+)\s(\w+)';
+
+if ($names =~ /$regex/) {
+	# $1, $2, so on are variables from match regex
+	print "First: $1\n";
+	print "Middle: $2\n";
+	print "Last: $3\n";
+	# same variables can be used in another regex
+	$names =~ s/(\w+)\s(\w+)\s(\w+)/\3 \1/;
+	print "Hi, ", join(",", $names);
+}

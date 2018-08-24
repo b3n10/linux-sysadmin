@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+
+# usage: perl hashexample /etc/passwd
+# <> means get input from file passed as argument, one line at a time
+# puts each returned value to $_
+# $_ by default receives value even if not specified
+while (<>) {
+	# split function by default takes $_ as argument
+	# puts all values in a list context
+	# if scalar is not a list, it will return number of fields
+	# ex: $num_fields = split /:/ will return 7
+	($name, $pw, $uid, $gid, $gecos, $path, $sh) = split /:/;
+	# defining key-value for hashes should have $ infront
+	$names_by_uid{$uid} = $name;
+}
+
+# declaring whole hash uses %
+%uid_by_name = reverse %names_by_uid;
+
+$key1 = root;
+$key2 = 0;
+
+# accessing individual value using key should use $
+print "\$uid_by_name{$key1}: $uid_by_name{$key1}\n";
+print "\$names_by_uid{$key2}: $names_by_uid{$key2}\n";

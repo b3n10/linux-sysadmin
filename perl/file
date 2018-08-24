@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+open(input, "< /etc/passwd") or die("File $input error.");
+open(output, "> /tmp/passwd") or die("File $output error.");
+
+while (<input>) {
+	($name, $pw, $uid, $gid, $gecos, $path, $sh) = split(/:/);
+	printf output "User ID: $uid\t-> Name: $name\n";
+}
+
