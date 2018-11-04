@@ -20,4 +20,3 @@ if mail_count != 0:
     mail_string = f"{mail_count}{mail_string}"
 
     subprocess.run(["xsetroot", "-name", mail_string])
-    time.sleep(10)
