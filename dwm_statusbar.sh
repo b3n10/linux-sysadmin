@@ -7,7 +7,7 @@ while true; do
 
     sep="|"
     mydate="$( date +'%a, %b %d %Y | %X' )"
-    mybatt="$( acpi -b | sed 's/.*[charging|unknown], \([0-9]*\)%.*/\1/gi' )%"
+    mybatt="$( acpi -b | sed 's/.*[charging|full], \([0-9]*\)%.*/\1/gi' )%"
     mybrt="B: $( cat /sys/class/backlight/intel_backlight/brightness )"
     # myvol=$( awk "/%/ {gsub(/[\[\]]/,''); print $4}" <(amixer sget Master) )
     volstr="V: $(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)"
