@@ -4,6 +4,7 @@
 export DISPLAY=:0
 
 mail=$( curl -u $GUSER:$GPASS --silent "https://mail.google.com/mail/feed/atom" |  grep -oPm1 "(?<=<title>)[^<]+" | sed '1d' )
+mail=$mail | xargs
 
 # https://askubuntu.com/a/92195/874085
 # https://linuxconfig.org/check-your-gmail-inbox-for-new-emails-with-bash-script
