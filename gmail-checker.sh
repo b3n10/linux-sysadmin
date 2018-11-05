@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export DISPLAY=":0.0"
+# export DISPLAY=":0.0"
+export DISPLAY=:0
 
 mail=$( curl -u $GUSER:$GPASS --silent "https://mail.google.com/mail/feed/atom" |  grep -oPm1 "(?<=<title>)[^<]+" | sed '1d' )
 
@@ -16,16 +17,17 @@ if [ -n "$mail" ]; then
         notif_title="New Mail"
     fi
 
-    kill -9 $(pgrep -f 'sh /home/ben/.xinitrc')
-    kill -9 $(pgrep -f 'sh /mnt/sdcard/scripts/dwm_statusbar.sh')
-    xsetroot -name "!!! $notif_title: $GCOUNT !!!"
+    # kill -9 $(pgrep -f 'sh /home/ben/.xinitrc')
+    # kill -9 $(pgrep -f 'sh /mnt/sdcard/scripts/dwm_statusbar.sh')
+    # xsetroot -name "!!! $notif_title: $GCOUNT !!!"
+    # sleep 8s
+    # sh /mnt/sdcard/scripts/dwm_statusbar.sh
 
-    sleep 8s
-
-    sh /mnt/sdcard/scripts/dwm_statusbar.sh
+    sudo -u ben DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send "$notif_title: $GCOUNT" "$mail"
 fi
 
 # echo "GC_STR='$notif_title: $GCOUNT'" > /tmp/gc.sh
 # echo "GC_STR='$notif_title: $GCOUNT'" > /dev/shm/foo
 # notify-send --icon=gnome-stock-mail-new "$count $notif_title" "$mail"
 # printf "$notif_title:\n$mail"
+
