@@ -14,7 +14,17 @@ while true; do
     mydate="$( date +'%a, %b %d %Y | %H:%M:%S' )"
     mybatt="$( acpi -b | sed 's/.*[charging|full], \([0-9]*\)%.*/\1/gi' )%"
 
-    xsetroot -name "$mymem $sep $mydsk $sep $myvol $sep $mybrt $sep $mydate $sep $mybatt"
+    get_wifi_status() {
+        mywifi="$( ip addr show | grep 192 )"
+
+        if [ -n "$mywifi" ]; then
+            echo " 🖧$sep"
+        else
+            echo " ✖$sep"
+        fi
+    }
+
+    xsetroot -name "$(get_wifi_status) $mymem $sep $mydsk $sep $myvol $sep $mybrt $sep $mydate $sep $mybatt"
 
     sleep 1s    # Update time every sec
 
