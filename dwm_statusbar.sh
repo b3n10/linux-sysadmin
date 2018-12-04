@@ -6,13 +6,19 @@ while true; do
 
     sep="|"
 
-    mymem="$(free -m | sed '1~2d' | awk '{print $3+$5}')M"
+    mymem="M: $(free -m | grep Mem | awk '{ printf "%.2f", ($3 + $5) / $2 * 100 }')%"
 
     mydsk="D: $(df -H /dev/sda1 | sed '1d' | awk '{print($5)}')"
+
     myvol="V: $(amixer get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "MM" } else { print $2 }}' | head -n 1)"
+
     mybrt="B: $( cat /sys/class/backlight/intel_backlight/brightness )"
+
     mydate="$( date +'%a, %b %d %Y | %H:%M:%S' )"
-    mybatt="$( acpi -b | sed 's/.*[charging|full], \([0-9]*\)%.*/\1/gi' )%"
+
+    batt_status=''
+    [[ `acpi -b | awk '{ print $3 }'` = 'Charging,' ]] && batt_status='+'
+    mybatt="$( acpi -b | sed 's/.*[charging|full], \([0-9]*\)%.*/\1/gi' )%$batt_status"
 
     get_wifi_status() {
         mywifi="$( ip addr show | grep 192 )"
