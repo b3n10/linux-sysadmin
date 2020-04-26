@@ -1,0 +1,4 @@
+FROM loc/centos7-1
+RUN yum -y install openssh openssh-server; yum clean all; systemctl enable sshd
+EXPOSE 22
+CMD ["/usr/sbin/init"]

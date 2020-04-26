@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+
+  u_squidward:
+    build:
+      context: .
+      dockerfile: Dockerfile_ubuntu1404
+    container_name: squidward
+    hostname: squidward
+
+  u_patrick:
+    build:
+      context: .
+      dockerfile: Dockerfile_ubuntu1404
+    container_name: patrick
+    hostname: patrick
+
+  c_mrcrabs:
+    build:
+      context: .
+      dockerfile: Dockerfile_centos7
+    container_name: c_mrcrabs
+    hostname: c_mrcrabs
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro

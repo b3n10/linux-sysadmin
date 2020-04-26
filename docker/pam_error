@@ -1,0 +1,44 @@
+Hi guys, i'm using test servers (on my local machine). I can't SSH login to my centos server using normal users. I always get `Connection closed by <centosIP> port 22`. Create new user but same issue. No problem SSH login as root. I tried SSH from an ubuntu server to centos server and no problem with root. But same issue with normal user with error: `Connection to <centosIP> closed.`
+
+
+`debug3: send packet: type 50`
+`debug2: we sent a password packet, wait for reply`
+`debug3: receive packet: type 53`
+`debug3: input_userauth_banner`
+`Connection closed by <centosIP> port 22`
+
+
+error: Could not load host key: /etc/ssh/ssh_host_dsa_key
+Failed password for testuser1 from <centosIP> port 41428 ssh2
+fatal: Access denied for user testuser1 by PAM account configuration [preauth]
+error: Could not load host key: /etc/ssh/ssh_host_dsa_key
+Accepted password for root from <centosIP> port 41440 ssh2
+
+using `LogLevel Debug3` in my sshd_config, this is what I got when logging in using testuser1: https://paste.centos.org/view/c4d85fb7
+
+receive packet: type 50 [preauth]
+userauth-request for user testuser1 service ssh-connection method password [preauth]
+attempt 1 failures 0 [preauth]
+input_userauth_request: try method password [preauth]
+mm_auth_password entering [preauth]
+mm_request_send entering: type 12 [preauth]
+mm_auth_password: waiting for MONITOR_ANS_AUTHPASSWORD [preauth]
+mm_request_receive_expect entering: type 13 [preauth]
+mm_request_receive entering [preauth]
+mm_request_receive entering
+monitor_read: checking request 12
+PAM: sshpam_passwd_conv called with 1 messages
+PAM: password authentication accepted for testuser1
+mm_answer_authpassword: sending result 1
+mm_request_send entering: type 13
+mm_request_receive_expect entering: type 102
+mm_request_receive entering
+do_pam_account: called
+PAM: sshpam_passwd_conv called with 1 messages
+PAM: do_pam_account pam_acct_mgmt = 7 (Authentication failure)
+mm_request_send entering: type 103
+Failed password for testuser1 from <centosIP> port 41804 ssh2
+mm_auth_password: user authenticated [preauth]
+mm_do_pam_account entering [preauth]
+mm_request_send entering: type 102 [preauth]
+mm_request_receive_expect entering: type 103 [preauth]
